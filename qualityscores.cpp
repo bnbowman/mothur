@@ -353,11 +353,11 @@ double QualityScores::calculateAverage(bool logTransform){
 	double aveQScore = 0.0000;
 	
 	for(int i=0;i<seqLength;i++){
-        if (logTransform)   {  aveQScore += pow(10.0, qScores[i]);  }
+        if (logTransform)   {  aveQScore += pow(10.0, qScores[i] / -10);  }
         else                {  aveQScore += qScores[i];             }
 	}
     
-    if (logTransform)   {  aveQScore = log10(aveQScore /(double) seqLength);    }
+    if (logTransform)   {  aveQScore = -10 * log10(aveQScore /(double) seqLength);    }
     else                {  aveQScore /= (double) seqLength;                     }
 	
 	return aveQScore;
